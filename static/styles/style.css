@@ -1,0 +1,17 @@
+.butn{
+    width:161px;
+    height:60px;
+    background:none;
+    font-weight:block;
+    font-size:20px;
+    border-style:inset;
+}
+
+.butn:active{
+    background-color:#ffde00;
+    
+}
+
+body{
+    margin-right:0px;
+}
