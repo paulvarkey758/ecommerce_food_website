@@ -9,7 +9,7 @@ function selection(n)
 	  }
 	  else
 	  {
-	      document.getElementById(list[i]).style="background-color:none;";
+	      document.getElementById(list[i]).style="background-color:#ffb700;";
 	  }   
       }  
   }

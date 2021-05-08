@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% block content %}
+  <div class="row" style="background-color:#ffb700;">
+	    <div class="col-md-12">
+	      <table>
+		<tr>
+		  <td id="allbtn"><button id="all" class="butn" onclick="selection('all')">All</button></td>
+		  <td><button class="butn" id="sw" onclick="selection('sw')">Sweets</button></\
+					       td>
+<td><button class="butn" id="ff" onclick="selection('ff')">Fastfood</button></\
+			     td>
+<td><button class="butn" id="mls" onclick="selection('mls')">Meals</button></\
+					  td>
+<td><button class="butn" id="sn" onclick="selection('sn')">Snacks</button></\
+					  td>
+<td><button class="butn" id="cu" onclick="selection('cu')">curry</button></\
+td>
+		</tr>
+	      </table>
+	    </div>
+</div>
+<div class="row">
+  <div class="col-md-12" style="height:10px"></div>
+</div>
+<!--selection area ended-->
+<div class="row">
+  {% for d in datas %}
+  <a href="{% url 'itemfun' %}">
+  <div class="col-md-4">
+    <div class="card" style="width: 19rem;">
+  <img src="{{d.photo.url}}" class="card-img-top imgsize" alt="...">
+  <div class="card-body">
+    <h2 class="card-title my-card-font">{{d.name}}</h2>
+    <h1 class="my-card-font">₹ {{d.price}}</h1>
+  </div>
+</div>
+  </div>
+  </a>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -2,7 +2,7 @@
     width:161px;
     height:60px;
     background:none;
-    font-weight:block;
+    font-weight: ;
     font-size:20px;
     border-style:inset;
 }
@@ -14,4 +14,18 @@
 
 body{
     margin-right:0px;
+}
+#allbtn{
+    background:#ffde00;
+}
+.imgsize{
+    width:19rem;
+    height:19rem;
+}
+.my-card-font{
+    font-weight: ;
+}
+a{
+    color:black;
+    text-decoration:none;
 }
