@@ -1,7 +1,4 @@
-{% extends 'index.html' %}
-{% block content %}
-
-   <div class="row" style="background-color:#ffb700;">
+ <div class="row" style="background-color:#ffb700;">
 	    <div class="col-md-12">
 	      <table>
 		<tr>
@@ -23,24 +20,31 @@ td>
 <div class="row">
   <div class="col-md-12" style="height:10px"></div>
 </div>
-
 <!--selection area ended-->
-
 <div class="row">
-  {% for d in datas %}
+  <div class="col-md-3" style="margin-bottom:15px;">
+    <a href="{% url 'mainfun' %}">
+      <button class="back-button">&#8592;Back</button>
+      </a>
+  </div>
+  <div class="col-md-6" style="margin-top:40px;">
+    <h2>Search result for {{key}}</h2>
+  </div>
+</div>
+  <div class="row">
+  {% for r in result %}
   <div class="col-md-4">
-    <a href="{% url 'itemfun' name=d.name %}">
+    <a href="{% url 'itemfun' name=r.name %}">
     <div class="card" style="width: 19rem;margin-bottom:15px;">
-  <img src="{{d.photo.url}}" class="card-img-top imgsize" alt="...">
+  <img src="{{r.photo.url}}" class="card-img-top imgsize" alt="...">
   <div class="card-body">
-    <h2 class="card-title my-card-font">{{d.name}}</h2>
-    <h1 class="my-card-font">₹ {{d.price}}</h1>
+    <h2 class="card-title my-card-font">{{r.name}}</h2>
+    <h1 class="my-card-font">₹ {{r.price}}</h1>
     
   </div>
     </div>
     </a>
   </div>
   {% endfor %}
-</div>
-
-{% endblock content %}
+  </div>
+ {% endblock content %} 

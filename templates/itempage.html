@@ -1,5 +1,32 @@
 {% extends "index.html" %}
 {% block content %}
-
-<h3>helloo hai</h3>
+<div class="row">
+  <div class="col-md-12">
+    <a href="{% url 'mainfun' %}">
+      <button class="back-button">&#8592;Back</button>
+      </a>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-md-12">
+      <div style="text-align:center;">
+	<img src="{{products.photo.url}}" alt="image" style="width:45rem;height:45rem;">
+      </div>
+      <div style="margin-left:40px;margin-right:30px;">
+      <h1 style="font-size:50px;font-weight:none;">{{products.name}}</h1><br>
+      <h1 style="font-size:65px;font-weight:bold;">₹ {{products.price}}</h1><br>
+      <p style="font-size:30px;">{{products.discription}}</p>
+      </div>
+    
+  
+    </div>
+  </div>
+  <div class="row" style="margin-top:70px">
+    <div class="col-md-6">
+      <button class="item-page-button" style="margin-left:50px;">ADD TO CART</button>
+    </div>
+    <div class="col-md-6">
+      <button class="item-page-button">BUY NOW</button>
+    </div>
+  </div>
 {% endblock %}

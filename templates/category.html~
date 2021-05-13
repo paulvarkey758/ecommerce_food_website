@@ -1,14 +1,14 @@
 {% extends 'index.html' %}
 {% block content %}
 
-   <div class="row" style="background-color:#ffb700;">
+  <div class="row" style="background-color:#ffb700;">
 	    <div class="col-md-12">
 	      <table>
 		<tr>
 		  <td><a href="{% url 'categoryfun' catname='all' %}"><button class="butn">All</button></a></td>
 		  <td><a href="{% url 'categoryfun' catname='sweets' %}"><button class="butn">Sweets</button></a></\
 					       td>
-<td><a href="{% url 'categoryfun' catname='fastfood' %}"><button class="butn">Fastfood</button></a></\
+<td><a href="{% url 'categoryfun' catname='fast food' %}"><button class="butn">Fastfood</button></a></\
 			     td>
 <td><a href="{% url 'categoryfun' catname='meals' %}"><button class="butn">Meals</button></a></\
 					  td>
@@ -23,24 +23,21 @@ td>
 <div class="row">
   <div class="col-md-12" style="height:10px"></div>
 </div>
-
-<!--selection area ended-->
-
-<div class="row">
-  {% for d in datas %}
+  <!--selection area ended-->
+  <div class="row">
+  {% for c in catdata %}
   <div class="col-md-4">
-    <a href="{% url 'itemfun' name=d.name %}">
+    <a href="{% url 'itemfun' name=c.name %}">
     <div class="card" style="width: 19rem;margin-bottom:15px;">
-  <img src="{{d.photo.url}}" class="card-img-top imgsize" alt="...">
+  <img src="{{c.photo.url}}" class="card-img-top imgsize" alt="...">
   <div class="card-body">
-    <h2 class="card-title my-card-font">{{d.name}}</h2>
-    <h1 class="my-card-font">₹ {{d.price}}</h1>
+    <h2 class="card-title my-card-font">{{c.name}}</h2>
+    <h1 class="my-card-font">₹ {{c.price}}</h1>
     
   </div>
     </div>
     </a>
   </div>
   {% endfor %}
-</div>
-
-{% endblock content %}
+  </div>
+ {% endblock content %} 
