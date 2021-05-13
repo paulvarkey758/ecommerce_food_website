@@ -27,5 +27,6 @@ def searchfun(request):
     return render(request,"searchtab.html",{'result':result,'key':key})
 
     
-    
+def loginfun(request):
+    return render(request,"loginpage.html")
         

@@ -6,4 +6,5 @@ urlpatterns=[
     path('itemfun/<str:name>',views.itemfun,name="itemfun"),
     path('category/<str:catname>',views.categoryfun,name='categoryfun'),
     path('searchpage',views.searchfun,name="searchfun"),
+    path('login',views.loginfun,name="loginfun"),
 ]
