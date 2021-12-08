@@ -1,43 +1,30 @@
 {% extends 'index.html' %}
 {% block content %}
-
-  <div class="row" style="background-color:#ffb700;">
-	    <div class="col-md-12">
-	      <table>
-		<tr>
-		  <td><a href="{% url 'categoryfun' catname='all' %}"><button class="butn">All</button></a></td>
-		  <td><a href="{% url 'categoryfun' catname='sweets' %}"><button class="butn">Sweets</button></a></\
-					       td>
-<td><a href="{% url 'categoryfun' catname='fastfood' %}"><button class="butn">Fastfood</button></a></\
-			     td>
-<td><a href="{% url 'categoryfun' catname='meals' %}"><button class="butn">Meals</button></a></\
-					  td>
-<td><a href="{% url 'categoryfun' catname='snacks' %}"><button class="butn">Snacks</button></a></\
-					  td>
-<td><a href="{% url 'categoryfun' catname='curry' %}"><button class="butn">curry</button></a></\
-td>
-		</tr>
-	      </table>
-	    </div>
-</div>
-<div class="row">
-  <div class="col-md-12" style="height:10px"></div>
-</div>
-  <!--selection area ended-->
-  <div class="row">
-  {% for c in catdata %}
-  <div class="col-md-4">
-    <a href="{% url 'itemfun' name=c.name %}">
-    <div class="card" style="width: 19rem;margin-bottom:15px;">
-  <img src="{{c.photo.url}}" class="card-img-top imgsize" alt="...">
-  <div class="card-body">
-    <h2 class="card-title my-card-font">{{c.name}}</h2>
-    <h1 class="my-card-font">₹ {{c.price}}</h1>
-    
-  </div>
+{% load static %}
+<!--<div class="row">
+    <div class="col-lg-12">
+        <div class="row sub-bar">
+            <div class="col-lg-2 back-btn">
+                <button id="back_btn" onclick="backButton()"><img src="{% static 'img/back_arrow.png' %}" alt="back"></button>
+            </div>
+            <div class="col-lg-4">
+                <h4></h4>
+            </div>
+        </div>
     </div>
-    </a>
-  </div>
-  {% endfor %}
-  </div>
- {% endblock content %} 
+</div>-->
+<div class="container">
+    <div class="row">
+        {% for i in idata %}
+        <div class="col-lg-3 col-md-3 col-sm-4 col-6">
+            <a href="{% url 'productfun' productName=i.name %}">
+                <div class="item-card">
+                <img src="{{i.image.url}}" alt="food">
+                <h3>{{i.name}}</h3>
+                <h2>₹ {{i.price}}</h2>
+            </div></a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

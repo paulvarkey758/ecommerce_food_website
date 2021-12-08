@@ -1,61 +1,87 @@
 {% load static %}
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" type="text/css">
     <title>YouFood</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'styles/style.css' %}" type="text/css">  
   </head>
   <body>
-    <div class="container-own">
-	  <nav class="row navbar fixed-top navbar-light bg-y" style="background:#ffde00;">
-  <div class="col-md-2 container">
-    <a class="navbar-brand" href="{% url 'mainfun' %}">
-      <img src="{% static 'image/youfood_icon.png' %}" alt="" width="150" height="100">
-    </a>
-  </div>
-  <div class="col-md-6">
-    <div class=" container-fluid">
-    <form class="d-flex" method="GET" action="searchpage">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchkey">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 my-banner">
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 p-0">
+                    <a href="{% url 'mainfun' %}"><img src="{% static 'img/youfood_icon.png' %}" alt="logo" id="logo"></a>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-6 pt-4">
+                    <form class="searchform d-flex" action="searchfun" method="GET">
+                      <input type="search" placeholder="Search" name="search">
+                      <button type="submit"><span class="search-text">Search</span><span><i><img class="search-icon" src="{% static 'img/search_icon.png' %}" alt=""></i></span></button>
+                    </form>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                    <i><img class="cart-icon mt-3" src="{% static 'img/cart.png' %}" alt="cart_icon"></i>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 p-0">
+                    {% if user.is_authenticated %}
+                    <table>
+                      <tr><td><h6 class="user-icon" style="margin-top: 15px;">Hai {{user.username}}</h6></td></tr>
+                      <tr><td><a href="{% url 'logoutfun' %}"><i><h6 class="user-icon">Log Out</h6></i></a></td></tr>
+                    </table>
+                    {% else %}
+                    <a href="{% url 'loginfun' %}"><i><h6 class="user-icon">Log In</h6></i></a>
+                    {% endif %}
+                  </div>
+                </div>
+            </div>
+        </div>
+        <!--navbar ended here-->
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 category-section">
+              <ul>
+                <li><a href="{% url 'categoryfun' categoryName='all' %}"><button onclick="categoryButton(this)" class="category-btn"><h3>All</h3></button></a></li>
+                {% for c in catdata %}
+                <li><a href="{% url 'categoryfun' categoryName=c.name %}"><button onclick="categoryButton(this)" class="category-btn"><h3>{{c.name}}</h3></button></a></li>
+                {% endfor %}
+              </ul>
+              </div>
+          </div>
+          <!--selection area ended-->
+          {% block content %}
+          <div class="row">
+             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="text-center">
+                <a href="{% url 'categoryfun' categoryName='all' %}"><img class="category-card" src="{% static 'img/all.jpg' %}" alt="all"></a>
+              </div>
+             </div>
+             {% for c in catdata %}
+             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="text-center">
+                <a href="{% url 'categoryfun' categoryName=c.name %}"><img class="category-card" src="{{c.image.url}}" alt="fastfood"></a>
+              </div>
+             </div>
+             {% endfor %}
+          </div>
+          {% endblock content %}
+        </div>
     </div>
-  </div>
-  <div class="col-md-2">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-</svg>
-  </div>
-  <div class="col-md-2">
-    <a href="{% url 'loginfun' %}">
-    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-</svg></a>
-  </div>
-	  </nav>
-	  <!--navbar ended-->
-	  <div class="row">
-	    <div class="col-md-12" style="height:130px;">
-	    </div>
-	  </div>
-	 
-{% block content %}
-{% endblock %}
-	  
+    <script src="{% static 'js/script.js' %}"></script>
 
-	  <div class="row">
-	    <div class="col-md-12 footer-container">
-	      <h1 class="footer-title"><span style="font-size:60px;">YOU</span>FOOD</h1><br>
-	      <p class="footer-data">copyright copy&; 2021 youfood</p>
-	      <p class="footer-data">www.youfood.com</p>
-	      <p class="footer-data">youfood@example.com</p>
-	      <p class="footer-data">7904719479</p>
-	    </div>
-	  </div>  
-</div>
-<!--<script src="{% static 'js/selection.js' %}">-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    -->
   </body>
 </html>
