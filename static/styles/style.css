@@ -149,6 +149,81 @@ a{
 .product-btn{
     text-align: center;
 }
+.cart-container{
+    width: 60%;
+    margin: 5rem auto;
+}
+.cart-header{
+    width: 100;
+    background-color: rgb(48, 90, 180);
+    color: white;
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.cart-card{
+    width: 100%;
+    height: 10rem;
+    margin-top: 0.5rem;
+    border: 1px solid rgb(48, 90, 180);
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+.cart-card img{
+    width: 6rem;
+}
+.cart-card button{
+    height: 2rem;
+    background: none;
+    border: 2px solid rgb(48, 90, 180);
+    color: rgb(48, 90, 180);
+    font-weight: bold;
+    width: 6rem;
+    margin-top: 2rem;
+}
+.cart-card button:active{
+    background-color: rgb(48, 90, 180);
+    color: white;
+}
+.cart-card span{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: rgb(48, 90, 180);
+    margin-top: 2.5rem;
+}
+.total{
+    width: 8rem;
+    padding: 1rem;
+    border: 2px solid rgb(48, 90, 180);
+    color: rgb(48, 90, 180);
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    display: inline-block;
+}
+.cart-buy-btn{
+    display: inline-block;
+    float: right;
+    padding: 1rem;
+    border: 2px solid rgb(48, 90, 180);
+    color: rgb(48, 90, 180);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    background: none;
+}
+.cart-buy-btn:active{
+    background-color: rgb(48, 90, 180);
+    color: white;
+}
 
 @media screen and (max-width:450px){
     #logo{

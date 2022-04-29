@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <title>YouFood Cart</title>
+</head>
+<body>
+    <div class="cart-container">
+        <div class="cart-header">
+            cart
+        </div>
+        <div class="cart-body">
+            {% for c in cp %}
+            <div class="cart-card">
+                <img src="{{c.image.url}}" alt="product-image">
+                <span>{{c.name}}</span>
+                <span>{{c.price}}</span>
+                <a href="{% url 'cartremove' itemid=c.id %}"><button>Remove</button></a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="total">
+            Total:{{total}}
+        </div>
+        <button class="cart-buy-btn">
+            order now
+        </button>
+    </div>
+        
+        
+        
+        
+        <br>
+        
+</body>
+</html>
